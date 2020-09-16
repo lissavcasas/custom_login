@@ -141,8 +141,7 @@ class LoginPage extends StatelessWidget {
       stream: bloc.emailStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          //height: snapshot.hasData ? 75 : 55,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
           decoration: containerInnerDecoration(),
           child: TextField(
             keyboardType: TextInputType.emailAddress,
@@ -151,10 +150,7 @@ class LoginPage extends StatelessWidget {
                 horizontal: 15,
                 vertical: 22,
               ),
-              //isDense: true,
               hintText: 'ejemplo@correo.com',
-              counterText: snapshot.data,
-              //errorText: snapshot.hasError ? snapshot.error : null,
               hintStyle: TextStyle(
                 fontSize: 12.0,
               ),
@@ -166,25 +162,33 @@ class LoginPage extends StatelessWidget {
                   width: 1.5,
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
-                borderSide: new BorderSide(
-                  color: Color(0XFF7774BB),
-                  width: 1.5,
-                ),
-              ),
-              errorBorder: snapshot.hasError
+              enabledBorder: snapshot.hasError
                   ? OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
                       borderSide: new BorderSide(
-                        color: Color(0XFFE81748), //red
+                        color: Colors.red,
                         width: 1.5,
                       ),
                     )
                   : OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
                       borderSide: new BorderSide(
-                        color: Color(0XFF7774BB), //purple
+                        color: Colors.transparent,
+                        width: 1.5,
+                      ),
+                    ),
+              focusedBorder: snapshot.hasError
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: new BorderSide(
+                        color: Colors.red, //red
+                        width: 1.5,
+                      ),
+                    )
+                  : OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: new BorderSide(
+                        color: Color(0XFF7774BB),
                         width: 1.5,
                       ),
                     ),
@@ -199,7 +203,7 @@ class LoginPage extends StatelessWidget {
   BoxDecoration containerInnerDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(12),
-      color: Color(0xffF0F3F7), //Color(0xFFF1F2F6), //Color(0XFF7774BB),
+      color: Color(0xffF0F3F7),
       boxShadow: [
         BoxShadow(
           color: Colors.white,
