@@ -259,7 +259,6 @@ class LoginPage extends StatelessWidget {
                 color: Colors.deepPurple,
               ),
               labelText: 'Contrasena',
-              //counterText: snapshot.data,
               errorText: snapshot.error,
             ),
             onChanged: bloc.changePassword,
